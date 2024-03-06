@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export default class CategoriasApi {
   async buscarTodasAsCategorias() {
     const { data } = await axios.get("/categorias/");
@@ -10,6 +11,13 @@ export default class CategoriasApi {
   }
   async atualizarCategoria(categoria) {
     const { data } = await axios.put(`/categorias/${categoria.id}/`, categoria);
+    return data.results;
+  }
+  async atualizarParcialCategoria(categoria) {
+    const { data } = await axios.patch(
+      `/categorias/${categoria.id}/`,
+      categoria
+    );
     return data.results;
   }
   async excluirCategoria(id) {
